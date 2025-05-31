@@ -50,6 +50,7 @@ alias vi='nvim'
 alias zed='zeditor'
 alias reload_waybar='pkill waybar || 1; hyprctl dispatch exec waybar'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep --color=never -E "state|to full|percentage"'
+alias lg='lazygit'
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
