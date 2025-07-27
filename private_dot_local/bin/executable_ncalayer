@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# ncalayer - Control script for NCALayer application
+
+show_help() {
+    cat << EOF
+ncalayer - Control script for NCALayer application
+
+USAGE:
+    ncalayer [COMMAND]
+
+COMMANDS:
+    start       Start the NCALayer application
+    stop        Stop the NCALayer application
+    -h, --help  Show this help message
+
+EXAMPLES:
+    ncalayer start    # Start NCALayer
+    ncalayer stop     # Stop NCALayer
+    ncalayer --help   # Show help
+EOF
+}
+
+start_ncalayer() {
+    echo "Starting NCALayer..."
+    uwsm app -- ~/.local/share/applications/ncalayer.desktop
+}
+
+stop_ncalayer() {
+    echo "Stopping NCALayer..."
+    ~/.local/share/NCALayer/ncalayer.sh --stop
+}
+
+# Main script logic
+case "${1:-}" in
+    start)
+        start_ncalayer
+        ;;
+    stop)
+        stop_ncalayer
+        ;;
+    -h|--help|"")
+        show_help
+        ;;
+    *)
+        echo "Error: Unknown command '$1'"
+        echo "Use 'ncalayer --help' for usage information."
+        exit 1
+        ;;
+esac
