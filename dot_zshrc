@@ -1,7 +1,7 @@
 #ZSH_THEME="spaceship"
 
-zstyle ':omz:update' mode reminder 
-zstyle ':omz:update' frequency 7
+zstyle ':omz:update' mode disable
+#zstyle ':omz:update' frequency 7
 
 COMPLETION_WAITING_DOTS="true"
 
