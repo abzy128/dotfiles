@@ -5,11 +5,10 @@ zstyle ':omz:update' mode disable
 
 COMPLETION_WAITING_DOTS="true"
 
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 plugins=(
-  # must-have
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  
   # theme and prompt
   starship
 
