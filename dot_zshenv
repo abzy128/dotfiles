@@ -6,8 +6,8 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.cache/.bun/bin"
 
 # .NET
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
+#export DOTNET_ROOT=$HOME/.dotnet
+#export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 
 # Apache Spark
 export SPARK_HOME="/opt/spark"
