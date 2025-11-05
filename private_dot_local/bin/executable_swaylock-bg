@@ -1,2 +1,2 @@
 #!/bin/bash
-swaylock -i /home/abzy/Pictures/Wallpapers/clovis.jpg
+swaylock -i /home/abzy/Pictures/Wallpapers/clovis.jpg --clock --indicator --indicator-radius 100 --grace 2 --grace-no-mouse
