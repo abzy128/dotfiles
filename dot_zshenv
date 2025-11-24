@@ -17,6 +17,9 @@ export PATH="$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin"
 # JetBrains Toolbox
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 
+# Android
+export ANDROID_HOME="$HOME/.local/share/Android/sdk"
+
 export EDITOR="nvim"
 #export ZSH="/usr/share/zsh"
 export ZSH="/usr/share/oh-my-zsh"
