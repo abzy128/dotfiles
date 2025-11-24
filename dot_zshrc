@@ -28,9 +28,10 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
-function start () {
-    xdg-open "$*" > /dev/null 2>&1 &
+function start() {
+    setsid xdg-open "$@" >/dev/null 2>&1
 }
+compdef _files start
 
 # eza
 alias ls='exa'                                                          # ls
