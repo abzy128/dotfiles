@@ -55,4 +55,4 @@ alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep --co
 alias lg='lazygit'
 
 eval "$(atuin init zsh --disable-up-arrow)"
-
+source <(COMPLETE=zsh jj)
