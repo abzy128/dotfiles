@@ -2,4 +2,6 @@ theme = Kanagawa Wave
 
 font-family = CaskaydiaMono Nerd Font
 
-# command = /usr/bin/tmux
+#command = zsh -c "tmux"
+
+confirm-close-surface = false
