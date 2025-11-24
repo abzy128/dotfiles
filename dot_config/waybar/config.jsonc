@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "idle_inhibitor", "pulseaudio", "backlight", "network"],
-    "modules-center": ["hyprland/window"],
+    //"modules-center": ["hyprland/window"],
     "modules-right": ["hyprland/submap", "hyprland/language", "cpu", "memory", "temperature", "battery", "tray", "clock"],
     // Modules configuration
      "hyprland/workspaces": {
@@ -97,6 +97,7 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        "locale": "en_GB.UTF-8",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
