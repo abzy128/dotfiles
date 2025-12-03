@@ -1,5 +1,5 @@
 # uwsm 
-if [[ "$(cat /etc/hostname)" == "abzy-linux" && "$(tty)" == "/dev/tty1" ]]; then
+if [[ "$(tty)" == "/dev/tty1" ]]; then
 #  if uwsm check may-start && uwsm select; then
 #	exec systemd-cat -t uwsm_start uwsm start default
 #  fi
