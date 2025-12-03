@@ -1,6 +1,6 @@
 theme = Kanagawa Wave
 
-font-family = CaskaydiaMono Nerd Font
+font-family = JetBrainsMono Mono Nerd Font
 
 #command = zsh -c "tmux"
 
