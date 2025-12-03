@@ -21,7 +21,7 @@
 }
 
 #waybar {
-	font-family: 'Cascadia Mono NF', sans-serif;
+	font-family: 'Noto Sans', sans-serif;
 	font-size: 1.2em;
 	font-weight: 400;
   color: @base04;
