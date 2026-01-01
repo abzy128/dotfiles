@@ -5,3 +5,5 @@ font-family = JetBrainsMono Mono Nerd Font
 #command = zsh -c "tmux"
 
 confirm-close-surface = false
+
+shell-integration-features = cursor,sudo,ssh-terminfo,ssh-env
