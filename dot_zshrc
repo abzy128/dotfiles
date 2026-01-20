@@ -52,7 +52,7 @@ alias vi='nvim'
 alias zed='zeditor'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep --color=never -E "state|to full|percentage"'
 alias lg='lazygit'
-alias zel='zellij'
+alias zel='zellij attach main'
 alias cat='bat --plain'
 alias slp='systemctl suspend'
 
