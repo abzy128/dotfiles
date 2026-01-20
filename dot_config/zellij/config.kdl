@@ -150,7 +150,7 @@ keybinds clear-defaults=true {
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
-        bind "Alt n" { NewPane; }
+        bind "Alt n" { NewPane "stacked"; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
