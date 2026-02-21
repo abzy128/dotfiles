@@ -5,6 +5,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.cache/.bun/bin"
 
+
 # .NET
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
@@ -24,11 +25,6 @@ export EDITOR="nvim"
 #export ZSH="/usr/share/zsh"
 export ZSH="/usr/share/oh-my-zsh"
 
-# dark mode
-export GTK_THEME=Adwaita:dark
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=Adwaita-Dark
-
 # Editor for normal session and SSH session
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -41,4 +37,3 @@ export ARCHFLAGS="-arch x86_64"
 
 # Locale
 export LANG='en_US.UTF-8'
-
