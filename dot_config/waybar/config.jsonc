@@ -100,7 +100,8 @@
         // "timezone": "America/New_York",
         "locale": "en_GB.UTF-8",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "on-click-middle" : "xdg-open \"https://calendar.google.com\""
     },
     "cpu": {
         "format": "{usage}% ",
