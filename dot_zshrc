@@ -25,7 +25,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 function start() {
-    setsid xdg-open "$@" >/dev/null 2>&1
+    setsid gio open "$@" >/dev/null 2>&1
 }
 compdef _files start
 
