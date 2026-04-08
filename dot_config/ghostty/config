@@ -6,4 +6,4 @@ font-family = JetBrainsMono Mono Nerd Font
 
 confirm-close-surface = false
 
-shell-integration-features = cursor,sudo,ssh-terminfo,ssh-env
+shell-integration-features = cursor,sudo,ssh-env
