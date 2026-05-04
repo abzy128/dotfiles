@@ -1,31 +1,14 @@
-#ZSH_THEME="spaceship"
-
-zstyle ':omz:update' mode disable
-#zstyle ':omz:update' frequency 7
-
-COMPLETION_WAITING_DOTS="true"
-
 fpath=(~/.zsh/completions $fpath)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source <(fzf --zsh)
 
-plugins=(
-  # theme and prompt
-  starship
+autoload -Uz compinit
+compinit
 
-  # completions
-  gitfast
-  tmux
-)
-
-source $ZSH/oh-my-zsh.sh
+eval "$(starship init zsh)"
 
 alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 function start() {
-    setsid gio open "$@" >/dev/null 2>&1
+    setsid xdg-open "$@" >/dev/null 2>&1
 }
 compdef _files start
 
@@ -71,3 +54,6 @@ zellij_tab_name_update() {
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
 
+source <(fzf --zsh)
+source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
