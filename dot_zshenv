@@ -5,21 +5,10 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.cache/.bun/bin"
 
-
 # .NET
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 unset DOTNET_ROOT
-
-# Apache Spark
-export SPARK_HOME="/opt/spark"
-export PATH="$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin"
-
-# JetBrains Toolbox
-export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
-
-# Android
-export ANDROID_HOME="$HOME/.local/share/Android/sdk"
 
 export EDITOR="nvim"
 
