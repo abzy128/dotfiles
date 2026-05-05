@@ -57,3 +57,4 @@ chpwd_functions+=(zellij_tab_name_update)
 source <(fzf --zsh)
 source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/vi-mode.zsh
