@@ -1,3 +1,6 @@
+# source NixOS env
+source /etc/set-environment
+
 fpath=(~/.zsh/completions $fpath)
 
 autoload -Uz compinit
