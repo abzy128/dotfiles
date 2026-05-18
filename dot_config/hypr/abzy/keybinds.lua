@@ -35,10 +35,15 @@ end
 hl.bind(kb({ mainMod, 0 }), hl.dsp.focus({ workspace = 10 }))
 hl.bind(kb({ mainMod, "SHIFT", 0 }), hl.dsp.window.move({ workspace = 10 }))
 
-hl.bind(kb({ mainMod, "CONTROL", "left" }), hl.dsp.workspace.move({ monitor = "left" }))
-hl.bind(kb({ mainMod, "CONTROL", "right" }), hl.dsp.workspace.move({ monitor = "right" }))
-hl.bind(kb({ mainMod, "CONTROL", "up" }), hl.dsp.workspace.move({ monitor = "up" }))
-hl.bind(kb({ mainMod, "CONTROL", "down" }), hl.dsp.workspace.move({ monitor = "down" }))
+hl.bind(kb({ mainMod, "CONTROL", "left" }), hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(kb({ mainMod, "CONTROL", "right" }), hl.dsp.workspace.move({ monitor = "r" }))
+hl.bind(kb({ mainMod, "CONTROL", "up" }), hl.dsp.workspace.move({ monitor = "u" }))
+hl.bind(kb({ mainMod, "CONTROL", "down" }), hl.dsp.workspace.move({ monitor = "d" }))
+
+hl.bind(kb({ mainMod, "SHIFT", "left" }), hl.dsp.window.move({ direction = "l" }))
+hl.bind(kb({ mainMod, "SHIFT", "right" }), hl.dsp.window.move({ direction = "r" }))
+hl.bind(kb({ mainMod, "SHIFT", "up" }), hl.dsp.window.move({ direction = "u" }))
+hl.bind(kb({ mainMod, "SHIFT", "down" }), hl.dsp.window.move({ direction = "d" }))
 
 hl.bind(kb({ mainMod, "ALT", "R" }), hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
