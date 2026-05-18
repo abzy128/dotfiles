@@ -1,0 +1,4 @@
+-- TODO: Rewrite laptop lid handling for the Lua config.
+-- Old behavior:
+--   switch:on:Lid Switch  -> ~/.local/bin/lidclosed
+--   switch:off:Lid Switch -> hyprctl keyword monitor "e-DP-1, enable" & hyprctl reload
