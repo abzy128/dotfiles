@@ -10,10 +10,10 @@ hl.config({
 		},
 		resize_on_border = true,
 		allow_tearing = false,
-		layout = "monocle",
+		layout = "scrolling",
 	},
 	scrolling = {
-		direction = "right",
+		direction = "down",
 		column_width = 1.0,
 	},
 	decoration = {

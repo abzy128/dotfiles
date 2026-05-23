@@ -55,8 +55,10 @@ hl.define_submap("resize", function()
 	hl.bind("ESCAPE", hl.dsp.submap("reset"))
 end)
 
-hl.bind(kb({ mainMod, "comma" }), hl.dsp.layout("cycleprev"))
-hl.bind(kb({ mainMod, "period" }), hl.dsp.layout("cyclenext"))
+--hl.bind(kb({ mainMod, "comma" }), hl.dsp.layout("cycleprev"))
+--hl.bind(kb({ mainMod, "period" }), hl.dsp.layout("cyclenext"))
+hl.bind(kb({ mainMod, "comma" }), hl.dsp.layout("move -col"))
+hl.bind(kb({ mainMod, "period" }), hl.dsp.layout("move +col"))
 
 hl.bind(kb({ mainMod, "minus" }), hl.dsp.focus({ workspace = "-1" }))
 hl.bind(kb({ mainMod, "equal" }), hl.dsp.focus({ workspace = "+1" }))
