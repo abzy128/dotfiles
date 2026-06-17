@@ -20,13 +20,17 @@
         "allow_data_collection": "no",
         "provider": "zed",
     },
-    "icon_theme": "Zed (Default)",
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Zed (Default)"
+    },
     "ui_font_family": "Noto Sans",
     "ui_font_size": 14,
     "buffer_font_family": "JetBrains Mono",
     "buffer_font_size": 13,
     "theme": {
-        "mode": "system",
+        "mode": "dark",
         "light": "Catppuccin Latte",
         "dark": "Catppuccin Macchiato",
     },

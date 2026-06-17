@@ -2,7 +2,19 @@ return {
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
-		branch = "0.1.x",
+		branch = "master",
+		init = function()
+			-- Neovim 0.12 compatibility: Telescope master may use vim.nonnil,
+			-- while older/newer nightly APIs can expose only vim.F.if_nil.
+			vim.F = vim.F or {}
+			vim.F.if_nil = vim.F.if_nil or function(value, default)
+				if value == nil then
+					return default
+				end
+				return value
+			end
+			vim.nonnil = vim.nonnil or vim.F.if_nil
+		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions

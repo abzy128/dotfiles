@@ -1,5 +1,4 @@
-# source NixOS env
-source /etc/set-environment
+source "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
 
 fpath=(~/.zsh/completions $fpath)
 
@@ -58,6 +57,4 @@ zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
 
 source <(fzf --zsh)
-source /run/current-system/sw/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/vi-mode.zsh

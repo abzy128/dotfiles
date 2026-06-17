@@ -9,7 +9,7 @@ hl.bind(kb({ mainMod, "C" }), hl.dsp.window.close())
 hl.bind(kb({ mainMod, "SHIFT", "M" }), hl.dsp.exit())
 hl.bind(
 	kb({ mainMod, "V" }),
-	hl.dsp.exec_cmd("clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy")
+	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
 )
 hl.bind(kb({ mainMod, "E" }), hl.dsp.exec_cmd(DefaultApps.fileManager))
 hl.bind(kb({ mainMod, "L" }), hl.dsp.exec_cmd("hyprlock"))
