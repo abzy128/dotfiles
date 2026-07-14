@@ -21,6 +21,36 @@ hl.window_rule({
 	size = "1000 600",
 })
 
+hl.window_rule({
+	name = "screen share picker",
+	match = {
+		class = "^(hyprland-share-picker|xdg-desktop-portal-hyprland)$",
+	},
+	float = true,
+	center = true,
+	size = "1000 600",
+})
+
+hl.window_rule({
+	name = "screen share picker by title",
+	match = {
+		title = "^(Select what to share)$",
+	},
+	float = true,
+	center = true,
+	size = "1000 600",
+})
+
+hl.window_rule({
+	name = "screen share indicator",
+	match = {
+		title = "^(.*)(is sharing (your|a) (screen|window|tab)|[Ss]creen [Ss]har(e|ing))(.*)$",
+	},
+	float = true,
+	center = true,
+	size = "600 160",
+})
+
 hl.window_rule({ match = { title = "^(Confirm to replace files)$" }, float = true })
 hl.window_rule({ match = { title = "^(File Operation Progress)$" }, float = true })
 hl.window_rule({ match = { class = "^(google-chrome)$", title = "^(Open File)$" }, float = true })
