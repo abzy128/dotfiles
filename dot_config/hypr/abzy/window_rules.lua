@@ -67,7 +67,7 @@ hl.window_rule({
 })
 
 -- Bitwarden extension in Chromium
---hl.window_rule({ match = { title = "(.*nngceckbapebfimnlniiiahkandclblb.*)" }, float = true })
+hl.window_rule({ match = { class = "(.*nngceckbapebfimnlniiiahkandclblb.*)" }, float = true })
 
 -- # Ignore maximize requests from apps. You'll probably like this.
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
