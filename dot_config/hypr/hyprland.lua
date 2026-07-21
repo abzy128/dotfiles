@@ -1,5 +1,4 @@
-require("abzy.monitors")
-require("abzy.monitors_default")
+require("monitors")
 require("abzy.window_rules")
 require("abzy.default_apps")
 require("abzy.autostart")

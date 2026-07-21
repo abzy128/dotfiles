@@ -10,6 +10,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("poweralertd")
 	-- hl.exec_cmd("hyprlauncher -d")
 	hl.exec_cmd("noctalia")
+	--hl.exec_cmd("hyprmoncfgd")
 
 	-- TODO: add check for if device is ASUS ROG device. if so exec "rog-control-center"
 end)
