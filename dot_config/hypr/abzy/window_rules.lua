@@ -3,8 +3,9 @@ hl.window_rule({
 		class = "^(org.telegram.desktop)$",
 		title = "^(Media viewer)$",
 	},
-	fullscreen = true,
-	workspace = "unset",
+	fullscreen = false,
+	--workspace = "unset",
+	float = true,
 })
 
 hl.window_rule({ match = { title = "^(Open)$" }, float = true })
@@ -75,4 +76,3 @@ hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "(pinentry-)(.*)" }, stay_focused = true })
 
 hl.window_rule({ match = { class = "zoom", title = "annotate_toolbar" }, float = true, workspace = "silent" })
-
