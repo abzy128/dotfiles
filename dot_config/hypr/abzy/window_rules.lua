@@ -76,3 +76,10 @@ hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = "(pinentry-)(.*)" }, stay_focused = true })
 
 hl.window_rule({ match = { class = "zoom", title = "annotate_toolbar" }, float = true, workspace = "silent" })
+
+-- Noctalia Settings
+hl.window_rule({
+	match = { class = "dev.noctalia.Noctalia" },
+	float = true,
+	size = { 1080, 920 },
+})

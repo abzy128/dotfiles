@@ -7,21 +7,15 @@ end
 hl.bind(kb({ mainMod, "Q" }), hl.dsp.exec_cmd("ghostty +new-window"))
 hl.bind(kb({ mainMod, "C" }), hl.dsp.window.close())
 hl.bind(kb({ mainMod, "SHIFT", "M" }), hl.dsp.exit())
-hl.bind(
-	kb({ mainMod, "V" }),
-	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
-)
+
 hl.bind(kb({ mainMod, "E" }), hl.dsp.exec_cmd(DefaultApps.fileManager))
 hl.bind(kb({ mainMod, "L" }), hl.dsp.exec_cmd("hyprlock"))
 hl.bind(kb({ mainMod, "CONTROL", "SPACE" }), hl.dsp.window.float({ action = "toggle" }))
-hl.bind(kb({ mainMod, "D" }), hl.dsp.exec_cmd(DefaultApps.menu))
-hl.bind(kb({ mainMod, "W" }), hl.dsp.exec_cmd(DefaultApps.windowMenu))
 hl.bind(kb({ mainMod, "G" }), hl.dsp.exec_cmd(DefaultApps.sshMenu))
 hl.bind(kb({ mainMod, "SHIFT", "S" }), hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 hl.bind(kb({ mainMod, "CONTROL", "SHIFT", "S" }), hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
 hl.bind(kb({ mainMod, "S" }), hl.dsp.exec_cmd('grim -g "$(slurp -o)" - | wl-copy'))
 hl.bind(kb({ mainMod, "F" }), hl.dsp.window.fullscreen())
-hl.bind(kb({ mainMod, "B" }), hl.dsp.exec_cmd("rofimoji --action copy"))
 hl.bind(kb({ mainMod, "SHIFT", "C" }), hl.dsp.exec_cmd("hyprpicker | wl-copy"))
 hl.bind(kb({ mainMod, "CONTROL", "SHIFT", "R" }), hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(kb({ mainMod, "left" }), hl.dsp.focus({ direction = "left" }))
@@ -91,3 +85,13 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+
+-- Noctalia binds
+local ipc = "noctalia msg "
+
+-- Core binds
+hl.bind(mainMod .. "+D", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
+hl.bind(mainMod .. "+W", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
+hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. "panel-toggle clipboard"))
+hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
+hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
