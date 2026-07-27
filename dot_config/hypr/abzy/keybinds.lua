@@ -1,4 +1,5 @@
 local mainMod = "SUPER"
+local ipc = "noctalia msg "
 
 local function kb(parts)
 	return table.concat(parts, " + ")
@@ -9,12 +10,13 @@ hl.bind(kb({ mainMod, "C" }), hl.dsp.window.close())
 hl.bind(kb({ mainMod, "SHIFT", "M" }), hl.dsp.exit())
 
 hl.bind(kb({ mainMod, "E" }), hl.dsp.exec_cmd(DefaultApps.fileManager))
-hl.bind(kb({ mainMod, "L" }), hl.dsp.exec_cmd("hyprlock"))
+hl.bind(kb({ mainMod, "L" }), hl.dsp.exec_cmd(ipc .. "session lock"))
 hl.bind(kb({ mainMod, "CONTROL", "SPACE" }), hl.dsp.window.float({ action = "toggle" }))
 hl.bind(kb({ mainMod, "G" }), hl.dsp.exec_cmd(DefaultApps.sshMenu))
-hl.bind(kb({ mainMod, "SHIFT", "S" }), hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+hl.bind(kb({ mainMod, "SHIFT", "S" }), hl.dsp.exec_cmd(ipc .. "screenshot-region"))
+-- Noctalia has no per-invocation annotation command, so keep swappy for this specialized bind.
 hl.bind(kb({ mainMod, "CONTROL", "SHIFT", "S" }), hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
-hl.bind(kb({ mainMod, "S" }), hl.dsp.exec_cmd('grim -g "$(slurp -o)" - | wl-copy'))
+hl.bind(kb({ mainMod, "S" }), hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen pick"))
 hl.bind(kb({ mainMod, "F" }), hl.dsp.window.fullscreen())
 hl.bind(kb({ mainMod, "SHIFT", "C" }), hl.dsp.exec_cmd("hyprpicker | wl-copy"))
 hl.bind(kb({ mainMod, "CONTROL", "SHIFT", "R" }), hl.dsp.exec_cmd("hyprctl reload"))
@@ -60,14 +62,14 @@ hl.bind(kb({ mainMod, "equal" }), hl.dsp.focus({ workspace = "+1" }))
 hl.bind(kb({ mainMod, "mouse:272" }), hl.dsp.window.drag(), { mouse = true })
 hl.bind(kb({ mainMod, "mouse:273" }), hl.dsp.window.resize(), { mouse = true })
 
-hl.bind(kb({ "XF86PowerOff" }), hl.dsp.exec_cmd("wlogout"))
+hl.bind(kb({ "XF86PowerOff" }), hl.dsp.exec_cmd(ipc .. "panel-toggle session"))
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 10%+"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. "volume-up 5"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. "volume-down 5"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. "volume-mute"))
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(ipc .. "mic-mute"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. "brightness-up all 10"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down all 10"))
 -- TODO: make it generic or move to host specific file
 hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d asus::kbd_backlight s +1"))
 hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl -d asus::kbd_backlight s 1-"))
@@ -80,18 +82,17 @@ hl.bind(
 )
 hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("~/.local/bin/toggleTouchpad"))
 
--- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd(ipc .. "media next"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd(ipc .. "media toggle"))
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(ipc .. "media toggle"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(ipc .. "media previous"))
 
 -- Noctalia binds
-local ipc = "noctalia msg "
 
 -- Core binds
 hl.bind(mainMod .. "+D", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind(mainMod .. "+W", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
 hl.bind(mainMod .. "+V", hl.dsp.exec_cmd(ipc .. "panel-toggle clipboard"))
-hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
-hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
+-- conflicts with scrolling layout bind
+--hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
+hl.bind("SUPER + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
