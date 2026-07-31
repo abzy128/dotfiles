@@ -44,6 +44,6 @@ hl.config({
 
 -- Animations
 hl.curve("easeInAndOut", { type = "bezier", points = { { 0.83, 0 }, { 0.17, 1 } } })
-hl.curve("defaultSpring", { type = "spring", mass = 1, stiffness = 800, dampening = 60 })
+hl.curve("defaultSpring", { type = "spring", mass = 1, stiffness = 1200, dampening = 70 })
 hl.animation({ leaf = "global", enabled = true, speed = 1, spring = "defaultSpring" })
 --hl.animation({ leaf = "global", enabled = true, speed = 2, bezier = "easeInAndOut" })
