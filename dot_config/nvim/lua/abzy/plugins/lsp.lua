@@ -73,7 +73,10 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'clangd', 'gopls', 'pyright', 'rust_analyzer',
-          'ts_ls', 'csharp_ls', 'jdtls', 'hyprls', 'lua_ls',
+          -- NOTE: C# is handled by easy-dotnet.nvim, which manages the Roslyn
+          -- language server itself. Enabling csharp_ls here would attach a
+          -- second server to the same buffers.
+          'ts_ls', 'jdtls', 'hyprls', 'lua_ls',
         },
         automatic_enable = true,
       })
