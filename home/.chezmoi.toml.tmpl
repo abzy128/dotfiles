@@ -1,0 +1,6 @@
+# Keep the checkout location when initialized outside chezmoi's default directory.
+sourceDir = {{ .chezmoi.workingTree | quote }}
+{{ if hasKey . "machine" }}
+[data]
+machine = {{ .machine | quote }}
+{{ end }}

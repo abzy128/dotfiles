@@ -1,0 +1,33 @@
+{{- $name := default (lower .chezmoi.hostname) (get . "machine") -}}
+{{- if not (hasKey .hosts $name) -}}
+  {{- fail (printf "Unknown host %q: add it to home/.chezmoidata/machines.toml or set data.machine" $name) -}}
+{{- end -}}
+{{- $host := index .hosts $name -}}
+{{- if ne $host.os .chezmoi.os -}}
+  {{- fail (printf "Host %s expects %s, but chezmoi is running on %s" $name $host.os .chezmoi.os) -}}
+{{- end -}}
+{{- if not (hasKey .hostTypes $host.type) -}}
+  {{- fail (printf "Unknown host type %q" $host.type) -}}
+{{- end -}}
+{{- if not (has $host.gitOwner (list "home-manager" "chezmoi")) -}}
+  {{- fail (printf "Invalid gitOwner for %s" $name) -}}
+{{- end -}}
+{{- if and (eq $host.gitOwner "home-manager") (not $host.nix) -}}
+  {{- fail "Home Manager Git ownership requires a Nix host" -}}
+{{- end -}}
+{{- $settings := mergeOverwrite (deepCopy (index .hostTypes $host.type).features) (default dict (get $host "features")) -}}
+{{- range $feature, $enabled := $settings -}}
+  {{- if not (hasKey $.features $feature) -}}
+    {{- fail (printf "Unknown feature %q" $feature) -}}
+  {{- end -}}
+  {{- if not (kindIs "bool" $enabled) -}}
+    {{- fail (printf "Feature %s must be a boolean" $feature) -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (get $settings "wayland") (ne .chezmoi.os "linux") -}}
+  {{- fail "Wayland configuration requires Linux" -}}
+{{- end -}}
+{{- if and (get $settings "legacyHardwareScripts") $host.nix -}}
+  {{- fail "Legacy hardware/GRUB scripts are not supported on Nix hosts" -}}
+{{- end -}}
+{{- dict "name" $name "type" $host.type "os" $host.os "nix" $host.nix "gitOwner" $host.gitOwner "features" $settings "wayland" (get $settings "wayland") | toJson -}}
