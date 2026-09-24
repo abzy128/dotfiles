@@ -3,7 +3,6 @@
 nvim = true
 fastfetch = true
 ghostty = true
-tmux = true
 zellij = true
 yazi = true
 zed = true
@@ -16,7 +15,6 @@ legacyHardwareScripts = false
 nvim = true
 fastfetch = true
 ghostty = false
-tmux = true
 zellij = true
 yazi = false
 zed = false

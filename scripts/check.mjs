@@ -62,7 +62,6 @@ try {
     if (platform === 'windows') {
       absent(tree, '.config');
       absent(tree, '.local');
-      absent(tree, '.tmux.conf');
       assert(tree['Documents/PowerShell/Microsoft.PowerShell_profile.ps1']);
       assert(tree['Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1']);
       assert(!Object.values(tree).some(e => e.type === 'symlink'), 'Windows must not require symlink privileges');
@@ -74,8 +73,6 @@ try {
     } else {
       absent(tree, 'AppData');
       absent(tree, 'Documents');
-      assert(tree['.local/share/tmux/oh-my-tmux/.tmux.conf'], 'tmux symlink target must be deployed');
-      assert.equal(tree['.config/tmux/tmux.conf'].linkname, `${destination}/.local/share/tmux/oh-my-tmux/.tmux.conf`);
       const zellij = tree['.config/zellij/config.kdl'].contents;
       if (platform === 'darwin') {
         assert.match(zellij, /^copy_command "pbcopy"$/m);

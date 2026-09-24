@@ -16,7 +16,6 @@
 .config/**
 .local
 .local/**
-.tmux.conf
 {{ else }}
 AppData
 AppData/**

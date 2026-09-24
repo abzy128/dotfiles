@@ -35,8 +35,7 @@ chezmoi apply
 
 The same commands work in PowerShell. The init template stores the checkout
 location in the local chezmoi configuration. `.chezmoiroot` selects `home/`
-inside it. Submodules are initialized by chezmoi; for a manual clone use
-`git clone --recurse-submodules` or `git submodule update --init --recursive`.
+inside it.
 
 For the already moved Mac checkout, no reinitialization is required to use
 the new layout. Review the diff before applying. Fetch changes separately
@@ -70,8 +69,6 @@ chezmoi. A WSL environment needs its own Linux host entry.
   target names such as `.config/hypr`, not `dot_config/hypr`.
 - `config/nvim/`: the canonical Neovim content. Thin include templates map it
   to `.config/nvim` on Linux/macOS and `AppData/Local/nvim` on Windows.
-- `vendor/oh-my-tmux/`: pinned upstream submodule, outside the deployment tree.
-  Only its main tmux configuration is included in the managed home files.
 - `archive/zsh/`: old chezmoi shell files retained for reference, never applied.
 
 To add a non-Nix Linux server, for example:
@@ -85,7 +82,7 @@ gitOwner = "chezmoi"
 
 [hosts.new-server.features]
 nvim = true
-tmux = false
+zellij = false
 ```
 
 To add a feature, declare its supported OSs and destination paths, then enable

@@ -9,7 +9,6 @@
 - `abzy-rog` is native Windows. Deploy Neovim under `AppData/Local/nvim`, and PowerShell profiles under `Documents/PowerShell` and `Documents/WindowsPowerShell`. Do not require Windows symlinks.
 - `../dotfiles-win` is an unmaintained reference only. Do not apply it or copy its hardcoded usernames and package-manager integration.
 - No package installers, WinGet automation, or automatic fetching/application during Nix activation.
-- `vendor/oh-my-tmux` is a pinned submodule. Preserve its revision unless explicitly updating it.
 - Keep credentials out of source. Git signing keys in template data are public fingerprints; provisioning private keys is separate.
 - Check `git status --short` before and after changes. Run `node scripts/check.mjs` (Node 22+ and chezmoi); it renders all hosts and dry-runs only against a temporary destination. PowerShell parsing is included when `pwsh` is available.
 - Do not apply to the user's real home or switch Nix configurations unless explicitly requested.
