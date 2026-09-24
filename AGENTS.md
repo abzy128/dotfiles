@@ -5,7 +5,7 @@
 - Define machines and host types in `home/.chezmoidata/machines.toml`; define feature destinations and supported OSs in `features.toml` alongside it. Reject unknown machines and incompatible OS selections.
 - Zsh is owned by Home Manager in `../nix-abzy`. `archive/zsh/` is reference material and must not deploy.
 - Git stays in Home Manager where a host declares `gitOwner = "home-manager"`. Chezmoi manages Git only on hosts declaring `gitOwner = "chezmoi"`; do not generate competing Git configuration files.
-- Edit shared Neovim files in `config/nvim/`. After adding files, run `node scripts/sync-nvim.mjs`. After removing files, remove their two thin destination templates too. Do not duplicate configuration content in those templates.
+- Neovim files live as plain files in `home/dot_config/nvim/` so `chezmoi re-add` works; do not make them templates. `home/AppData/Local/nvim/` is generated: after adding or removing Neovim files, run `node scripts/sync-nvim.mjs`. Do not duplicate configuration content in those templates.
 - `abzy-rog` is native Windows. Deploy Neovim under `AppData/Local/nvim`, and PowerShell profiles under `Documents/PowerShell` and `Documents/WindowsPowerShell`. Do not require Windows symlinks.
 - `../dotfiles-win` is an unmaintained reference only. Do not apply it or copy its hardcoded usernames and package-manager integration.
 - No package installers, WinGet automation, or automatic fetching/application during Nix activation.

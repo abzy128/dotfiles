@@ -67,8 +67,9 @@ chezmoi. A WSL environment needs its own Linux host entry.
   shows the effective profile.
 - `home/`: the destination-shaped deployment tree. Its ignore patterns use
   target names such as `.config/hypr`, not `dot_config/hypr`.
-- `config/nvim/`: the canonical Neovim content. Thin include templates map it
-  to `.config/nvim` on Linux/macOS and `AppData/Local/nvim` on Windows.
+- `home/dot_config/nvim/`: the canonical Neovim content, stored as plain files
+  so `chezmoi re-add` works on Linux/macOS. `home/AppData/Local/nvim/` holds
+  generated include templates that deploy the same files on Windows.
 - `archive/zsh/`: old chezmoi shell files retained for reference, never applied.
 
 To add a non-Nix Linux server, for example:
@@ -116,11 +117,11 @@ installation automation.
 
 ## Editing and validation
 
-Edit Neovim content in `config/nvim`, not the generated include templates.
-After adding files, run `node scripts/sync-nvim.mjs`; after deleting files,
-remove their corresponding templates from both destination trees. For
-templated targets, edit source content directly rather than using
-`chezmoi re-add` to overwrite the mapping templates.
+Edit Neovim content in `home/dot_config/nvim` (or edit `~/.config/nvim` and
+`chezmoi re-add`), never the generated templates in `home/AppData/Local/nvim`.
+After adding or deleting files, run `node scripts/sync-nvim.mjs` to regenerate
+the Windows templates. On Windows, copy changes such as an updated
+`lazy-lock.json` back into `home/dot_config/nvim` by hand.
 
 Run from this repository with Node 22+ and chezmoi installed:
 

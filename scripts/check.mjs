@@ -37,6 +37,13 @@ function absent(tree, prefix) {
   assert(!Object.keys(tree).some(p => p === prefix || p.startsWith(prefix + '/')), `${prefix} must be excluded`);
 }
 
+function subtree(tree, prefix) {
+  return Object.fromEntries(Object.entries(tree)
+    .filter(([p]) => p.startsWith(prefix + '/'))
+    .map(([p, e]) => [p.slice(prefix.length + 1), e.contents]));
+}
+
+let unixNvim;
 try {
   const cases = [
     ['bts-n0298', 'linux', 'workstation', false],
@@ -52,13 +59,10 @@ try {
     assert.equal(Boolean(tree['.gitconfig-work']), git);
     absent(tree, '.local/bin/updateGrub');
     absent(tree, '.local/bin/switchgpu');
-    const nvim = platform === 'windows' ? 'AppData/Local/nvim' : '.config/nvim';
-    for (const entry of fs.readdirSync(path.join(root, 'config/nvim'), { recursive: true, withFileTypes: true })) {
-      if (!entry.isFile()) continue;
-      const source = path.join(entry.parentPath, entry.name);
-      const relative = path.relative(path.join(root, 'config/nvim'), source).split(path.sep).join('/');
-      assert.equal(tree[`${nvim}/${relative}`]?.contents, fs.readFileSync(source, 'utf8'), `${host}: ${relative}`);
-    }
+    const nvim = subtree(tree, platform === 'windows' ? 'AppData/Local/nvim' : '.config/nvim');
+    assert(nvim['init.lua'], `${host}: Neovim must be deployed`);
+    if (platform === 'windows') assert.deepEqual(nvim, unixNvim, 'Windows Neovim must match Linux/macOS; run node scripts/sync-nvim.mjs');
+    else unixNvim ??= nvim;
     if (platform === 'windows') {
       absent(tree, '.config');
       absent(tree, '.local');
@@ -135,7 +139,7 @@ try {
     console.log('SKIP PowerShell syntax: pwsh is unavailable');
   }
   if (spawnSync('nvim', ['--version'], { encoding: 'utf8' }).status === 0) {
-    const lua = `local ok, err = pcall(function() for _, file in ipairs(vim.fn.globpath(${JSON.stringify(path.join(root, 'config/nvim'))}, '**/*.lua', false, true)) do local chunk, failure = loadfile(file); assert(chunk, failure) end end); if not ok then print(err); vim.cmd('cquit 1') end`;
+    const lua = `local ok, err = pcall(function() for _, file in ipairs(vim.fn.globpath(${JSON.stringify(path.join(root, 'home/dot_config/nvim'))}, '**/*.lua', false, true)) do local chunk, failure = loadfile(file); assert(chunk, failure) end end); if not ok then print(err); vim.cmd('cquit 1') end`;
     successful(run('nvim', ['--headless', '-u', 'NONE', '-i', 'NONE', '-n', '-c', `lua ${lua}`, '-c', 'qa!']));
     console.log('PASS Neovim Lua syntax (no plugins loaded)');
   } else {
