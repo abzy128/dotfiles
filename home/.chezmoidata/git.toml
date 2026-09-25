@@ -1,7 +1,7 @@
 # For hosts whose gitOwner is chezmoi. Home Manager hosts retain git.nix.
 [git]
 name = "Abzal Orazbek"
-email = "me@abzy.kz"
+email = "me@abzal.dev"
 signingKey = "374E6AB1937AA5024A03E26147DEAF3BB0711EA5"
 signCommits = true
 defaultBranch = "dev"
