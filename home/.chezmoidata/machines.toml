@@ -1,0 +1,61 @@
+# Host types provide defaults; each host can override individual features.
+[hostTypes.workstation.features]
+nvim = true
+fastfetch = true
+ghostty = true
+zellij = true
+yazi = true
+zed = true
+powershell = true
+wayland = false
+linuxScripts = false
+legacyHardwareScripts = false
+
+[hostTypes.server.features]
+nvim = true
+fastfetch = true
+ghostty = false
+zellij = true
+yazi = false
+zed = false
+powershell = false
+wayland = false
+linuxScripts = false
+legacyHardwareScripts = false
+
+[hosts.bts-n0298]
+type = "workstation"
+os = "linux"
+nix = true
+gitOwner = "home-manager"
+[hosts.bts-n0298.features]
+wayland = true
+linuxScripts = true
+
+[hosts.abzy-linux]
+type = "workstation"
+os = "linux"
+nix = true
+gitOwner = "home-manager"
+[hosts.abzy-linux.features]
+wayland = true
+linuxScripts = true
+
+[hosts.abzy-pn41]
+type = "server"
+os = "linux"
+nix = true
+# This host currently uses system Git and has no Home Manager integration.
+gitOwner = "chezmoi"
+
+[hosts.abzy-m5]
+type = "workstation"
+os = "darwin"
+nix = true
+gitOwner = "home-manager"
+
+[hosts.abzy-rog]
+type = "workstation"
+os = "windows"
+nix = false
+gitOwner = "chezmoi"

@@ -1,0 +1,12 @@
+[user]
+    name = {{ .git.name | quote }}
+    email = {{ .git.email | quote }}
+    signingKey = {{ .git.signingKey | quote }}
+[commit]
+    gpgsign = {{ .git.signCommits }}
+[init]
+    defaultBranch = {{ .git.defaultBranch | quote }}
+[push]
+    autoSetupRemote = true
+[includeIf "gitdir{{ if eq .chezmoi.os "windows" }}/i{{ end }}:~/dev/bts/"]
+    path = ~/.gitconfig-work

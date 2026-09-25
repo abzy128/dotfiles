@@ -1,0 +1,33 @@
+{{ $machine := includeTemplate "machine.json" . | fromJson }}
+
+# Zsh is owned by nix-abzy on all supported Zsh machines.
+.zshrc
+.zshenv
+.zsh
+.zsh/**
+
+{{ if eq $machine.gitOwner "home-manager" }}
+.gitconfig
+.gitconfig-work
+{{ end }}
+
+{{ if eq .chezmoi.os "windows" }}
+.config
+.config/**
+.local
+.local/**
+{{ else }}
+AppData
+AppData/**
+Documents
+Documents/**
+{{ end }}
+
+{{ range $name, $feature := .features }}
+{{ if or (not (get $machine.features $name)) (not (has $.chezmoi.os $feature.os)) }}
+{{ range $feature.paths }}
+{{ . }}
+{{ . }}/**
+{{ end }}
+{{ end }}
+{{ end }}
