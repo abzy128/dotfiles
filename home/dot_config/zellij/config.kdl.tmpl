@@ -362,11 +362,11 @@ pane_frames false
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 copy_command "pbcopy"
-{{ else if eq (includeTemplate "machine.json" . | fromJson).wayland true }}
+{{ else if (includeTemplate "machine.json" . | fromJson).wayland -}}
 copy_command "wl-copy"
-{{ end }}
+{{ end -}}
 // copy_command "pbcopy"                     // osx
 // 
 // copy_command "pbcopy"

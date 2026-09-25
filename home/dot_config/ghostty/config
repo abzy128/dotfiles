@@ -1,9 +1,10 @@
-theme = noctalia
+theme = Kanagawa Wave
 
 font-family = JetBrainsMono Mono Nerd Font
+font-feature = -calt, -liga, -dlig
 
 #command = zsh -c "tmux"
 
-confirm-close-surface = false
+#confirm-close-surface = false
 
 shell-integration-features = cursor,sudo,ssh-env
