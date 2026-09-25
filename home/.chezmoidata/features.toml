@@ -1,4 +1,7 @@
 # Paths are destination paths relative to the home directory, not source names.
+[features.lazygit]
+os = ["linux", "darwin", "windows"]
+paths = [".config/lazygit", "Library/Application Support/lazygit", "AppData/Local/lazygit"]
 [features.nvim]
 os = ["linux", "darwin", "windows"]
 paths = [".config/nvim", "AppData/Local/nvim"]

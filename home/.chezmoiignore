@@ -23,6 +23,15 @@ Documents
 Documents/**
 {{ end }}
 
+{{ if ne .chezmoi.os "darwin" }}
+Library
+Library/**
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/lazygit
+.config/lazygit/**
+{{ end }}
+
 {{ range $name, $feature := .features }}
 {{ if or (not (get $machine.features $name)) (not (has $.chezmoi.os $feature.os)) }}
 {{ range $feature.paths }}

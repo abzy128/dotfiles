@@ -1,5 +1,6 @@
 # Host types provide defaults; each host can override individual features.
 [hostTypes.workstation.features]
+lazygit = true
 nvim = true
 fastfetch = true
 ghostty = true
@@ -12,6 +13,7 @@ linuxScripts = false
 legacyHardwareScripts = false
 
 [hostTypes.server.features]
+lazygit = true
 nvim = true
 fastfetch = true
 ghostty = false

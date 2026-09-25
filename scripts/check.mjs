@@ -44,6 +44,12 @@ function subtree(tree, prefix) {
 }
 
 let unixNvim;
+const lazygitPaths = {
+  linux: '.config/lazygit',
+  darwin: 'Library/Application Support/lazygit',
+  windows: 'AppData/Local/lazygit',
+};
+const lazygitConfig = fs.readFileSync(path.join(root, 'home/dot_config/lazygit/config.yml'), 'utf8');
 try {
   const cases = [
     ['bts-n0298', 'linux', 'workstation', false],
@@ -54,6 +60,14 @@ try {
   ];
   for (const [host, platform, type, git] of cases) {
     const tree = JSON.parse(successful(render(host, platform)));
+    assert.equal(tree[`${lazygitPaths[platform]}/config.yml`]?.contents, lazygitConfig, `${host}: shared Lazygit config`);
+    for (const [os, prefix] of Object.entries(lazygitPaths)) {
+      if (os !== platform) absent(tree, prefix);
+    }
+    const withoutLazygit = JSON.parse(successful(render(host, platform, {
+      hosts: { [host]: { features: { lazygit: false } } },
+    })));
+    for (const prefix of Object.values(lazygitPaths)) absent(withoutLazygit, prefix);
     for (const p of ['.zshrc', '.zshenv', '.zsh', 'config', 'vendor', 'AGENTS.md', 'README.md']) absent(tree, p);
     assert.equal(Boolean(tree['.gitconfig']), git, `${host}: Git ownership`);
     assert.equal(Boolean(tree['.gitconfig-work']), git);

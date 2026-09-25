@@ -116,6 +116,22 @@ installation automation.
 
 ## Editing and validation
 
+Lazygit is enabled on all hosts. Edit the shared plain file at
+`home/dot_config/lazygit/config.yml`; macOS and Windows include that content
+without symlinks. The default destinations are:
+
+| OS | Lazygit config |
+| --- | --- |
+| Linux | `~/.config/lazygit/config.yml` |
+| macOS | `~/Library/Application Support/lazygit/config.yml` |
+| Windows | `%USERPROFILE%/AppData/Local/lazygit/config.yml` |
+
+These follow [Lazygit's defaults](https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md)
+and assume the standard Windows LocalAppData location, with no custom
+`XDG_CONFIG_HOME`, `LG_CONFIG_FILE`, or `--use-config-dir` override.
+Copy edits made on macOS or Windows back into the shared source file.
+Disable the `lazygit` feature in a host override to stop managing it.
+
 Edit Neovim content in `home/dot_config/nvim` (or edit `~/.config/nvim` and
 `chezmoi re-add`), never the generated templates in `home/AppData/Local/nvim`.
 After adding or deleting files, run `node scripts/sync-nvim.mjs` to regenerate
