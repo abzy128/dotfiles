@@ -60,6 +60,19 @@ try {
   ];
   for (const [host, platform, type, git] of cases) {
     const tree = JSON.parse(successful(render(host, platform)));
+    if (platform === 'darwin') {
+      JSON.parse(tree['.config/karabiner/karabiner.json'].contents);
+      absent(tree, '.config/karabiner/automatic_backups');
+      assert(tree['.aerospace.toml']);
+      assert(tree['.config/aerospace/scripts/chatgpt-popout']);
+      assert(tree['.config/aerospace/scripts/popout-window.swift']);
+      absent(tree, '.config/aerospace/scripts/popout-window');
+      absent(tree, '.config/aerospace/scripts/popout-last-run.log');
+    } else {
+      absent(tree, '.config/karabiner');
+      absent(tree, '.aerospace.toml');
+      absent(tree, '.config/aerospace');
+    }
     assert.equal(tree[`${lazygitPaths[platform]}/config.yml`]?.contents, lazygitConfig, `${host}: shared Lazygit config`);
     for (const [os, prefix] of Object.entries(lazygitPaths)) {
       if (os !== platform) absent(tree, prefix);

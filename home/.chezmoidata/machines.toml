@@ -55,6 +55,9 @@ type = "workstation"
 os = "darwin"
 nix = true
 gitOwner = "home-manager"
+[hosts.abzy-m5.features]
+aerospace = true
+karabiner = true
 
 [hosts.abzy-rog]
 type = "workstation"

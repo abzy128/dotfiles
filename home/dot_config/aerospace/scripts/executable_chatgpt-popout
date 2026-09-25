@@ -1,0 +1,42 @@
+#!/bin/bash
+# AeroSpace Hyper+Z. ChatGPT's internal shortcut is Cmd+Alt+Y.
+set -u
+AEROSPACE=/opt/homebrew/bin/aerospace
+SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
+lock_dir="${TMPDIR:-/tmp}/chatgpt-popout-${UID}.lock"
+mkdir "$lock_dir" 2>/dev/null || exit 0
+trap 'rmdir "$lock_dir" 2>/dev/null || true' EXIT
+exec >"$SCRIPT_DIR/popout-last-run.log" 2>&1
+date
+workspace="$($AEROSPACE list-workspaces --focused)" || exit 1
+printf 'Invoked on workspace %s\n' "$workspace"
+was_popout=0
+"$SCRIPT_DIR/popout-window" >/dev/null && was_popout=1
+"$SCRIPT_DIR/popout-window" --wait-modifiers || exit 1
+if [[ "$was_popout" == 1 ]]; then
+    printf 'Hiding focused popout\n'
+    /usr/bin/osascript -e 'tell application "System Events" to key code 16 using {command down, option down}'
+    exit $?
+fi
+# A popout can be open but parked off-screen on a different workspace.
+# Summon it directly: the native toggle would otherwise hide it instead.
+id="$("$SCRIPT_DIR/popout-window" --list)"
+if [[ -z "$id" ]]; then
+    printf 'Opening popout\n'
+    /usr/bin/osascript -e 'tell application "System Events" to key code 16 using {command down, option down}' || exit 1
+fi
+for ((attempt=0; attempt<60; attempt++)); do
+    id="$("$SCRIPT_DIR/popout-window" --list)"
+    # Refuse ambiguous matches; never move the main window or multiple windows.
+    if [[ "$id" =~ ^[0-9]+$ ]]; then
+        if "$AEROSPACE" move-node-to-workspace --window-id "$id" --focus-follows-window "$workspace"; then
+            "$SCRIPT_DIR/popout-window" --center "$id" || exit 1
+            "$AEROSPACE" focus --window-id "$id" || exit 1
+            printf 'Summoned popout %s onto workspace %s\n' "$id" "$workspace"
+            exit 0
+        fi
+    fi
+    sleep 0.05
+done
+printf '%s\n' 'No unambiguous popout became available; no other window was moved.' >&2
+exit 1

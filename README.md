@@ -116,6 +116,24 @@ installation automation.
 
 ## Editing and validation
 
+AeroSpace is managed only on `abzy-m5`, through the macOS-only `aerospace`
+feature. `home/dot_aerospace.toml` preserves the current configuration,
+including its `/opt/homebrew/bin/aerospace` and `/Users/abzy` paths.
+The Hyper+Z ChatGPT popout binding also needs the shell and Swift sources
+under `home/dot_config/aerospace/scripts`. Its binary and log stay untracked.
+On a fresh Mac, after deploying these files, build the helper manually with
+the Xcode Command Line Tools installed:
+
+```sh
+xcrun swiftc "$HOME/.config/aerospace/scripts/popout-window.swift" \
+  -o "$HOME/.config/aerospace/scripts/popout-window"
+```
+
+The helper requires macOS Accessibility permission. The macOS-only `karabiner`
+feature, enabled on `abzy-m5`, manages `~/.config/karabiner/karabiner.json`:
+Caps Lock acts as Hyper when held and Escape when tapped, with Fn/Control
+swapped. Automatic backups remain local and untracked.
+
 Lazygit is enabled on all hosts. Edit the shared plain file at
 `home/dot_config/lazygit/config.yml`; macOS and Windows include that content
 without symlinks. The default destinations are:

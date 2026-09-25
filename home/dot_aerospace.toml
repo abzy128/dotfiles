@@ -1,0 +1,137 @@
+config-version = 2
+start-at-login = true
+auto-reload-config = true
+
+# On launch (boot / relogin / update) AeroSpace re-detects existing windows one
+# by one and can nest them into stray containers. Re-normalize every workspace
+# to a flat vertical accordion once detection has settled.
+after-startup-command = [
+  'exec-and-forget sleep 3; for ws in $(/opt/homebrew/bin/aerospace list-workspaces --all); do /opt/homebrew/bin/aerospace flatten-workspace-tree --workspace "$ws"; /opt/homebrew/bin/aerospace layout --workspace "$ws" --root v_accordion; done'
+]
+
+accordion-padding = 6
+default-root-container-layout = 'accordion'
+default-root-container-orientation = 'vertical'
+
+focus-follows-mouse.enabled = false
+on-focused-monitor-changed = []
+
+persistent-workspaces = [
+  '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+  '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'
+]
+
+gaps.inner.horizontal = 0
+gaps.inner.vertical = 0
+gaps.outer.left = 0
+gaps.outer.bottom = 0
+gaps.outer.top = 0
+gaps.outer.right = 0
+
+on-window-detected = [
+    {
+        if = 'test %{app-bundle-id} = net.imput.helium && test %{window-title} = Bitwarden',
+        run = ['layout floating']
+    },
+    # Static workspace assignment (AeroSpace does not persist placement across restarts).
+    { if = 'test %{app-bundle-id} = net.imput.helium', run = 'move-node-to-workspace 1' },
+    { if = 'test %{app-bundle-id} = com.apple.Music', run = 'move-node-to-workspace 1' },
+    # disabled because tabs spawned at 4 always being spawned at 2
+    #{ if = 'test %{app-bundle-id} = com.mitchellh.ghostty', run = 'move-node-to-workspace 2' },
+    #{ if = 'test %{app-bundle-id} = com.openai.codex', run = 'move-node-to-workspace 3' },
+    { if = 'test %{app-bundle-id} = com.t3tools.t3code', run = 'move-node-to-workspace 3' },
+    { if = 'test %{app-bundle-id} = com.microsoft.VSCode', run = 'move-node-to-workspace 4' },
+    { if = 'test %{app-bundle-id} = dev.zed.Zed', run = 'move-node-to-workspace 4' },
+    { if = 'test %{app-bundle-id} = com.TablePro', run = 'move-node-to-workspace 5' },
+    { if = 'test %{app-bundle-id} = com.hnc.Discord', run = 'move-node-to-workspace 8' },
+    { if = 'test %{app-bundle-id} = net.whatsapp.WhatsApp', run = 'move-node-to-workspace 8' },
+    { if = 'test %{app-bundle-id} = ru.keepcoder.Telegram', run = 'move-node-to-workspace 8' },
+    { if = 'test %{app-bundle-id} = com.microsoft.Outlook', run = 'move-node-to-workspace 10' },
+    { if = 'test %{app-bundle-id} = notion.id', run = 'move-node-to-workspace 12' },
+]
+
+[workspace-to-monitor-force-assignment]
+1  = 'main'
+2  = 'main'
+3  = 'main'
+4  = 'main'
+5  = 'main'
+6  = 'main'
+7  = 'main'
+8  = 'main'
+9  = 'main'
+10 = 'main'
+
+# Fall back to main when the second monitor is disconnected.
+11 = ['secondary', 'main']
+12 = ['secondary', 'main']
+13 = ['secondary', 'main']
+14 = ['secondary', 'main']
+15 = ['secondary', 'main']
+16 = ['secondary', 'main']
+17 = ['secondary', 'main']
+18 = ['secondary', 'main']
+19 = ['secondary', 'main']
+20 = ['secondary', 'main']
+
+[mode.main.binding]
+# Caps Lock Hyper layer
+ctrl-alt-shift-cmd-up   = 'focus up'
+ctrl-alt-shift-cmd-down = 'focus down'
+
+# Main display workspaces
+ctrl-1 = 'workspace 1'
+ctrl-2 = 'workspace 2'
+ctrl-3 = 'workspace 3'
+ctrl-4 = 'workspace 4'
+ctrl-5 = 'workspace 5'
+ctrl-6 = 'workspace 6'
+ctrl-7 = 'workspace 7'
+ctrl-8 = 'workspace 8'
+ctrl-9 = 'workspace 9'
+ctrl-0 = 'workspace 10'
+
+# Secondary display workspaces
+ctrl-alt-1 = 'workspace 11'
+ctrl-alt-2 = 'workspace 12'
+ctrl-alt-3 = 'workspace 13'
+ctrl-alt-4 = 'workspace 14'
+ctrl-alt-5 = 'workspace 15'
+ctrl-alt-6 = 'workspace 16'
+ctrl-alt-7 = 'workspace 17'
+ctrl-alt-8 = 'workspace 18'
+ctrl-alt-9 = 'workspace 19'
+ctrl-alt-0 = 'workspace 20'
+
+# Move window to main-display workspace and follow it
+ctrl-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
+ctrl-shift-2 = 'move-node-to-workspace --focus-follows-window 2'
+ctrl-shift-3 = 'move-node-to-workspace --focus-follows-window 3'
+ctrl-shift-4 = 'move-node-to-workspace --focus-follows-window 4'
+ctrl-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
+ctrl-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
+ctrl-shift-7 = 'move-node-to-workspace --focus-follows-window 7'
+ctrl-shift-8 = 'move-node-to-workspace --focus-follows-window 8'
+ctrl-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
+ctrl-shift-0 = 'move-node-to-workspace --focus-follows-window 10'
+
+# Move window to secondary-display workspace and follow it
+ctrl-alt-shift-1 = 'move-node-to-workspace --focus-follows-window 11'
+ctrl-alt-shift-2 = 'move-node-to-workspace --focus-follows-window 12'
+ctrl-alt-shift-3 = 'move-node-to-workspace --focus-follows-window 13'
+ctrl-alt-shift-4 = 'move-node-to-workspace --focus-follows-window 14'
+ctrl-alt-shift-5 = 'move-node-to-workspace --focus-follows-window 15'
+ctrl-alt-shift-6 = 'move-node-to-workspace --focus-follows-window 16'
+ctrl-alt-shift-7 = 'move-node-to-workspace --focus-follows-window 17'
+ctrl-alt-shift-8 = 'move-node-to-workspace --focus-follows-window 18'
+ctrl-alt-shift-9 = 'move-node-to-workspace --focus-follows-window 19'
+ctrl-alt-shift-0 = 'move-node-to-workspace --focus-follows-window 20'
+
+
+ctrl-alt-shift-cmd-left  = 'workspace --wrap-around prev'
+ctrl-alt-shift-cmd-right = 'workspace --wrap-around next'
+
+ctrl-alt-shift-cmd-f = 'layout floating tiling'
+
+# ChatGPT popout: summon onto the current workspace (Caps Lock = Hyper).
+ctrl-alt-shift-cmd-z = 'exec-and-forget /Users/abzy/.config/aerospace/scripts/chatgpt-popout'

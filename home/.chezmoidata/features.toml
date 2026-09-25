@@ -1,4 +1,10 @@
 # Paths are destination paths relative to the home directory, not source names.
+[features.aerospace]
+os = ["darwin"]
+paths = [".aerospace.toml", ".config/aerospace"]
+[features.karabiner]
+os = ["darwin"]
+paths = [".config/karabiner"]
 [features.lazygit]
 os = ["linux", "darwin", "windows"]
 paths = [".config/lazygit", "Library/Application Support/lazygit", "AppData/Local/lazygit"]

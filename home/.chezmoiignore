@@ -6,6 +6,14 @@
 .zsh
 .zsh/**
 
+# AeroSpace helper build output and runtime log stay local.
+.config/aerospace/scripts/popout-window
+.config/aerospace/scripts/popout-last-run.log
+
+# Karabiner maintains these backups locally.
+.config/karabiner/automatic_backups
+.config/karabiner/automatic_backups/**
+
 {{ if eq $machine.gitOwner "home-manager" }}
 .gitconfig
 .gitconfig-work
