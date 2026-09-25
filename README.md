@@ -70,7 +70,6 @@ chezmoi. A WSL environment needs its own Linux host entry.
 - `home/dot_config/nvim/`: the canonical Neovim content, stored as plain files
   so `chezmoi re-add` works on Linux/macOS. `home/AppData/Local/nvim/` holds
   generated include templates that deploy the same files on Windows.
-- `archive/zsh/`: old chezmoi shell files retained for reference, never applied.
 
 To add a non-Nix Linux server, for example:
 
@@ -137,9 +136,8 @@ PowerShell syntax is checked when `pwsh` is available, and Neovim Lua syntax
 when `nvim` is available (without loading plugins). These are rendering
 checks, not native Windows application or Neovim plugin integration tests.
 
-The existing cleaned-up Zsh configuration in `nix-abzy` is retained as-is.
-The archived shell files are not migrated into it, and chezmoi does not
-remove or replace existing shell files.
+Zsh configuration lives in `nix-abzy`; chezmoi does not manage, remove, or
+replace shell files.
 
 Original configuration authors and upstream attribution are retained in the
 individual files.

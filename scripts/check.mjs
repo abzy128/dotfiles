@@ -54,7 +54,7 @@ try {
   ];
   for (const [host, platform, type, git] of cases) {
     const tree = JSON.parse(successful(render(host, platform)));
-    for (const p of ['.zshrc', '.zshenv', '.zsh', 'archive', 'config', 'vendor', 'AGENTS.md', 'README.md']) absent(tree, p);
+    for (const p of ['.zshrc', '.zshenv', '.zsh', 'config', 'vendor', 'AGENTS.md', 'README.md']) absent(tree, p);
     assert.equal(Boolean(tree['.gitconfig']), git, `${host}: Git ownership`);
     assert.equal(Boolean(tree['.gitconfig-work']), git);
     absent(tree, '.local/bin/updateGrub');
