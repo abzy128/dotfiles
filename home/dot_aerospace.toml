@@ -29,10 +29,6 @@ gaps.outer.top = 0
 gaps.outer.right = 0
 
 on-window-detected = [
-    {
-        if = 'test %{app-bundle-id} = net.imput.helium && test %{window-title} = Bitwarden',
-        run = ['layout floating']
-    },
     # Static workspace assignment (AeroSpace does not persist placement across restarts).
     { if = 'test %{app-bundle-id} = net.imput.helium', run = 'move-node-to-workspace 1' },
     { if = 'test %{app-bundle-id} = com.apple.Music', run = 'move-node-to-workspace 1' },
@@ -132,6 +128,9 @@ ctrl-alt-shift-cmd-left  = 'workspace --wrap-around prev'
 ctrl-alt-shift-cmd-right = 'workspace --wrap-around next'
 
 ctrl-alt-shift-cmd-f = 'layout floating tiling'
+
+# Re-normalize the focused workspace to a flat vertical accordion.
+ctrl-alt-shift-cmd-r = ['flatten-workspace-tree', 'layout v_accordion']
 
 # ChatGPT popout: summon onto the current workspace (Caps Lock = Hyper).
 ctrl-alt-shift-cmd-z = 'exec-and-forget /Users/abzy/.config/aerospace/scripts/chatgpt-popout'
