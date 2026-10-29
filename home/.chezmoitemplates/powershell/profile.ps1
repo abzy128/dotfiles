@@ -3,9 +3,12 @@ $env:EDITOR = 'nvim'
 
 if (Get-Command Set-PSReadLineOption -ErrorAction SilentlyContinue) {
     Set-PSReadLineOption -EditMode Windows
-    # Windows PowerShell ships PSReadLine 2.0, which has no predictions.
+    # Windows PowerShell ships PSReadLine 2.0, which has no predictions, and
+    # predictions refuse to start without a VT console (e.g. `ssh host cmd`).
     if ((Get-Module PSReadLine).Version -ge [version]'2.2.0') {
-        Set-PSReadLineOption -PredictionSource History -PredictionViewStyle ListView
+        try {
+            Set-PSReadLineOption -PredictionSource History -PredictionViewStyle ListView
+        } catch {}
     }
 }
 
