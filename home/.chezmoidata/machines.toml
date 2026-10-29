@@ -64,3 +64,9 @@ type = "workstation"
 os = "windows"
 nix = false
 gitOwner = "chezmoi"
+
+[hosts.abzy-pc]
+type = "workstation"
+os = "windows"
+nix = false
+gitOwner = "chezmoi"

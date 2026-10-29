@@ -14,10 +14,11 @@ are independent: dotfile changes do not change the flake revision.
 | `abzy-pn41` | Linux | server | chezmoi | none |
 | `abzy-m5` | macOS | workstation | Home Manager | macOS |
 | `abzy-rog` | Windows | workstation | chezmoi | Windows |
+| `abzy-pc` | Windows | workstation | chezmoi | Windows |
 
 The PN41 has NixOS but currently no Home Manager integration; its Git
 configuration is therefore managed here. Zsh is never deployed by chezmoi.
-Neovim configuration is shared across all five hosts. Desktop-only files
+Neovim configuration is shared across all six hosts. Desktop-only files
 and Linux hardware helpers are excluded from servers and other OSs.
 
 ## Checkout and apply
@@ -91,12 +92,13 @@ every current host; the legacy helper feature is rejected on Nix hosts.
 Disabling a feature stops managing its files; it does not delete existing
 files. No removal scripts run automatically.
 
-## Windows: abzy-rog
+## Windows: abzy-rog and abzy-pc
 
 The Windows profile deploys Git, Neovim, and native PowerShell profiles for
 PowerShell 7 and Windows PowerShell. It does not deploy Unix desktop files,
 require symlink privileges, or install packages. Optional PowerShell tools
-are initialized only when available.
+are initialized only when available: starship, zoxide, fzf with the PSFzf
+module (Ctrl+T, Ctrl+R), eza and bat aliases matching Zsh, and lazygit.
 
 Default Windows paths are assumed: `%USERPROFILE%/AppData/Local/nvim` and
 the profile directories under `%USERPROFILE%/Documents`. If Documents is

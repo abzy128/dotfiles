@@ -57,6 +57,7 @@ try {
     ['abzy-pn41', 'linux', 'server', true],
     ['abzy-m5', 'darwin', 'workstation', false],
     ['abzy-rog', 'windows', 'workstation', true],
+    ['abzy-pc', 'windows', 'workstation', true],
   ];
   for (const [host, platform, type, git] of cases) {
     const tree = JSON.parse(successful(render(host, platform)));
