@@ -34,6 +34,8 @@ gitOwner = "home-manager"
 wayland = true
 linuxScripts = true
 
+# Retired: the laptop was wiped. Kept so its profile still renders; the
+# next Linux workstation gets a new name (nix-abzy docs/abzy-linux.md).
 [hosts.abzy-linux]
 type = "workstation"
 os = "linux"

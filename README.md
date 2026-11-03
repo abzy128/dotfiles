@@ -10,14 +10,16 @@ are independent: dotfile changes do not change the flake revision.
 | Host | OS | Type | Git owner | Desktop |
 | --- | --- | --- | --- | --- |
 | `bts-n0298` | Linux | workstation | Home Manager | Wayland |
-| `abzy-linux` | Linux | workstation | Home Manager | Wayland |
+| `abzy-linux` (retired) | Linux | workstation | Home Manager | Wayland |
 | `abzy-pn41` | Linux | server | chezmoi | none |
 | `abzy-m5` | macOS | workstation | Home Manager | macOS |
 | `abzy-rog` | Windows | workstation | chezmoi | Windows |
 | `abzy-pc` | Windows | workstation | chezmoi | Windows |
 
 The PN41 has NixOS but currently no Home Manager integration; its Git
-configuration is therefore managed here. Zsh is never deployed by chezmoi.
+configuration is therefore managed here. `abzy-linux` was a laptop that has
+since been wiped; its entry stays for reference (see nix-abzy
+`docs/abzy-linux.md`), and the next Linux workstation gets a new host name. Zsh is never deployed by chezmoi.
 Neovim configuration is shared across all six hosts. Desktop-only files
 and Linux hardware helpers are excluded from servers and other OSs.
 
