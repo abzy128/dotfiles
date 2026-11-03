@@ -8,7 +8,7 @@
 // back to the plain hostname. Only pulls the source checkout, at
 // ~/dev/personal/dotfiles or chezmoi's default ~/.local/share/chezmoi; never
 // runs `chezmoi apply`. Skips hosts that are unreachable or whose checkout is
-// missing, dirty, or not on main.
+// missing, has uncommitted changes to tracked files, or is not on main.
 //
 // Every remote command is a single `git -C <checkout> ...` with no shell
 // syntax, so it runs the same under sh, cmd and PowerShell (SSH sessions start
@@ -54,7 +54,7 @@ function pull(host) {
   }
   if (branch.code !== 0) return 'skip: no checkout';
   if (branch.out !== 'main') return `skip: ${checkout} on branch ${branch.out}`;
-  const status = remote(addr, checkout, 'status', '--porcelain');
+  const status = remote(addr, checkout, 'status', '--porcelain', '--untracked-files=no');
   if (status.code !== 0) return `failed: ${status.out}`;
   if (status.out) return `skip: ${checkout} has uncommitted changes`;
   const before = remote(addr, checkout, 'rev-parse', '--short', 'HEAD').out;
