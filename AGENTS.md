@@ -1,6 +1,6 @@
 # Dotfiles repository
 
-- This is the active chezmoi repository, separate from `../nix-abzy`.
+- This is the active chezmoi repository. Packages, services, Zsh and Home Manager Git live in the separate Nix flake `abzy128/nix-abzy`, usually checked out at `~/dev/personal/nix-abzy`; read its `AGENTS.md` when a change spans both repositories.
 - `.chezmoiroot` selects `home/`. Only files under that source-state tree deploy.
 - Define machines and host types in `home/.chezmoidata/machines.toml`; define feature destinations and supported OSs in `features.toml` alongside it. Reject unknown machines and incompatible OS selections.
 - Zsh is owned by Home Manager in `../nix-abzy`. Do not add Zsh files to chezmoi.
@@ -12,3 +12,5 @@
 - Keep credentials out of source. Git signing keys in template data are public fingerprints; provisioning private keys is separate.
 - Check `git status --short` before and after changes. Run `node scripts/check.mjs` (Node 22+ and chezmoi); it renders all hosts and dry-runs only against a temporary destination. PowerShell parsing is included when `pwsh` is available.
 - Do not apply to the user's real home or switch Nix configurations unless explicitly requested.
+- Commit and push changes directly to `main` yourself without asking first; do not open pull requests. Commit focused, working changes once `node scripts/check.mjs` passes. If the local checkout has unrelated uncommitted work or has diverged from `origin/main`, make the change in a separate worktree based on `origin/main` rather than touching that work.
+- After pushing, run `node scripts/pull-hosts.mjs` so reachable hosts (over Tailscale or otherwise) fast-forward their source checkout (`~/dev/personal/dotfiles`, or chezmoi's default `~/.local/share/chezmoi`). It only pulls; `chezmoi apply` still needs an explicit request. Report hosts it skipped or could not reach.
