@@ -111,7 +111,7 @@ On `abzy-pc`, which shares the machine with NixOS (`abzy-pc-nixos`), the
 systemd-boot's one-shot entry (the `LoaderEntryOneShot` EFI variable) to the
 newest NixOS generation and restarts; `-NoRestart` only sets it, `-Cancel`
 clears it. It needs an elevated shell; an admin SSH session works:
-`ssh abzy@abzy-pc Restart-NixOS`. See nix-abzy `docs/abzy-pc-nixos.md`.
+`ssh abzy@abzy-pc.li-alphard.ts.net Restart-NixOS`. See nix-abzy `docs/abzy-pc-nixos.md`.
 
 Default Windows paths are assumed: `%USERPROFILE%/AppData/Local/nvim` and
 the profile directories under `%USERPROFILE%/Documents`. If Documents is
