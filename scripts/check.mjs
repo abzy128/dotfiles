@@ -102,7 +102,10 @@ try {
       const gitFile = path.join(temp, 'gitconfig');
       fs.writeFileSync(gitFile, tree['.gitconfig'].contents);
       assert.equal(successful(run('git', ['config', '--file', gitFile, 'init.defaultBranch'])).trim(), 'dev');
-      fs.writeFileSync(path.join(temp, 'profile.ps1'), tree['Documents/PowerShell/Microsoft.PowerShell_profile.ps1'].contents);
+      const profile = tree['Documents/PowerShell/Microsoft.PowerShell_profile.ps1'].contents;
+      assert.equal(profile.includes('function Restart-NixOS'), host === 'abzy-pc', `${host}: Restart-NixOS only where NixOS shares the machine`);
+      assert.equal(tree['Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1'].contents, profile);
+      fs.writeFileSync(path.join(temp, 'profile.ps1'), profile);
     } else {
       absent(tree, 'AppData');
       absent(tree, 'Documents');

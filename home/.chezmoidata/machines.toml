@@ -8,6 +8,7 @@ zellij = true
 yazi = true
 zed = true
 powershell = true
+nixosDualBoot = false
 wayland = false
 linuxScripts = false
 legacyHardwareScripts = false
@@ -21,6 +22,7 @@ zellij = true
 yazi = false
 zed = false
 powershell = false
+nixosDualBoot = false
 wayland = false
 linuxScripts = false
 legacyHardwareScripts = false
@@ -83,3 +85,6 @@ type = "workstation"
 os = "windows"
 nix = false
 gitOwner = "chezmoi"
+[hosts.abzy-pc.features]
+# Shares the machine with NixOS (abzy-pc-nixos).
+nixosDualBoot = true

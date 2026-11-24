@@ -106,6 +106,13 @@ require symlink privileges, or install packages. Optional PowerShell tools
 are initialized only when available: starship, zoxide, fzf with the PSFzf
 module (Ctrl+T, Ctrl+R), eza and bat aliases matching Zsh, and lazygit.
 
+On `abzy-pc`, which shares the machine with NixOS (`abzy-pc-nixos`), the
+`nixosDualBoot` feature adds `Restart-NixOS` to the profile. It sets
+systemd-boot's one-shot entry (the `LoaderEntryOneShot` EFI variable) to the
+newest NixOS generation and restarts; `-NoRestart` only sets it, `-Cancel`
+clears it. It needs an elevated shell; an admin SSH session works:
+`ssh abzy@abzy-pc Restart-NixOS`. See nix-abzy `docs/abzy-pc-nixos.md`.
+
 Default Windows paths are assumed: `%USERPROFILE%/AppData/Local/nvim` and
 the profile directories under `%USERPROFILE%/Documents`. If Documents is
 redirected (for example by OneDrive), check `$PROFILE` and adapt the target

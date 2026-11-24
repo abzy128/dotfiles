@@ -68,3 +68,7 @@ if ($PSVersionTable.PSVersion.Major -ge 7 -and (Get-Command dotnet -ErrorAction 
         }
     }
 }
+{{- if get (includeTemplate "machine.json" . | fromJson).features "nixosDualBoot" }}
+
+{{ template "powershell/nixos-dual-boot.ps1" . }}
+{{- end }}
