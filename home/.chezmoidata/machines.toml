@@ -34,9 +34,19 @@ gitOwner = "home-manager"
 wayland = true
 linuxScripts = true
 
-# Retired: the laptop was wiped. Kept so its profile still renders. The next
-# Linux workstation is abzy-pc-nixos, NixOS on the abzy-pc desktop; add it here
-# when it is installed (nix-abzy docs/abzy-linux.md).
+# NixOS on the abzy-pc desktop, beside Windows (abzy-pc below). Its own
+# hostname keeps it off the Windows profile.
+[hosts.abzy-pc-nixos]
+type = "workstation"
+os = "linux"
+nix = true
+gitOwner = "home-manager"
+[hosts.abzy-pc-nixos.features]
+wayland = true
+linuxScripts = true
+
+# Retired: the laptop was wiped. Kept so its profile still renders; its
+# successor is abzy-pc-nixos (nix-abzy docs/abzy-linux.md).
 [hosts.abzy-linux]
 type = "workstation"
 os = "linux"

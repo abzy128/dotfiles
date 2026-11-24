@@ -53,6 +53,7 @@ const lazygitConfig = fs.readFileSync(path.join(root, 'home/dot_config/lazygit/c
 try {
   const cases = [
     ['bts-n0298', 'linux', 'workstation', false],
+    ['abzy-pc-nixos', 'linux', 'workstation', false],
     ['abzy-linux', 'linux', 'workstation', false],
     ['abzy-pn41', 'linux', 'server', true],
     ['abzy-m5', 'darwin', 'workstation', false],
